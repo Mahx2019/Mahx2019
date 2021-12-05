@@ -4,36 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
     <title>一个js的函数响应并显示</title>
     <style>
         * {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
+            font-size:larger;
+            font-family:'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
                         'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei',
                         'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
                         'Source Han Sans CN', 'Source Han Sans TC', 'Noto Sans CJK TC',
                         'WenQuanYi Micro Hei', SimSun, sans-serif;
             padding: 0px;
             border: 0px;
+        }
+        body{
+            width: 95vw;
+            height: 100vh;
             background-color: #74EBD5;
             background-image: linear-gradient(309deg, #74EBD5 0%, #9FACE6 70%, #ffffff 100%);
         }
         .root{
-            padding: 10vw;
-            
+            position: relative;
+            top: 20vh;
+            left: 10vw;
+            width: 70vw;
+            font-size: inherit;
         }
-        
+        #input1{
+            background-color:skyblue;
+            box-shadow: 18px 18px 0px salmon;
+        }
+        #inputBox1{
+            font-size: 70%;
+            width: 300px;
+            height: 55px;
+        }
+        .buttonOfInput1{
+            border-radius: 9px;
+            background-color: khaki;
+            cursor: pointer;
+        }
+        #resOfInputBox1{
+            width: 300px;
+            height: 60px;
+            background-color: slateblue;
+            color: aliceblue;
+        }
+
     </style>
 </head>
 <body>
+    <div class="root">
+        <p>注释：用来反映js函数的作用的demo</p>
+        <div id="input1">
+            <input id="inputBox1" type="text" placeholder="在这里输入的字符会在下面显示" />
+            <button onclick="responseClick()" class="buttonOfInput1" >click-here</button>
+            <div id="resOfInputBox1"></div>
+        </div>
 
-
-
-
-
+    </div>
 
 
     <script>
-
+        function responseClick() {
+        let x=  document.getElementById("inputBox1")//获取输入框元素
+        let y=  document.getElementById("resOfInputBox1") //获取id为html的元素
+        y.innerHTML = x.value; //将输入框的值赋给div标签
+        }
     </script>
 </body>
 </html>
