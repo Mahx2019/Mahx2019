@@ -18,4 +18,5 @@ Here are some ideas to get you started:
 
 ### =>[mianpage](https://Mahx2019.github.io/Mahx2019)
 
-### =>[H5checklist](https://mahx2019.github.io/Mahx2019/mainProj/H5checklist/)
+### =>[H5checklist](https://mahx2019.github.io/Mahx2019/mainProj/H5checklist)
+### =>[navbar](https://mahx2019.github.io/Mahx2019/mainProj/navbar)
