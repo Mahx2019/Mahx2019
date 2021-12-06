@@ -15,5 +15,33 @@
         <p class="text-clip">nothing but anything</p>
     </div>
     
+    <script>
+        (function (doc, win) {
+            let _root = doc.documentElement, _body = doc.documentElement,
+                resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                resizeCallback = function () {
+                    let clientWidth = _root.clientWidth,
+                        fontSize = 20;
+                    if (!clientWidth) return;
+                    //计算字体的大小
+                    if(clientWidth < 640) {
+                        fontSize = 20 * (clientWidth / 320);
+                    } else {
+                        fontSize = 20 * (640 / 320);
+                    }
+                    let _width = _root.clientWidth
+                    let _height = _root.clientHeight
+
+                    //直接设置容器内的一些值
+                    _root.style.fontSize = fontSize + 'px';
+                    _root.style.width = _width + 'px';
+                    _root.style.height = _height + 'px';
+                    
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvent, resizeCallback, false);
+            doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+        })(document, window);
+    </script>
 </body>
 </html>
