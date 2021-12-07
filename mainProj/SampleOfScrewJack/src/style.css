@@ -42,6 +42,9 @@ span{
 span:hover{
     cursor: pointer;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 #root{
     position: relative;
     display: block;
