@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screw Jack</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <div id="root" class="box">
+        <h1 >螺旋千斤顶设计</h1>
+        <div class="box2">螺旋千斤顶主要零件：<b>螺杆</b>、<b>螺母</b>、<b>托杯</b>、<b>手柄</b>、<b>底座</b>。</div>
+        <div class="box2">设计的
+            <b id="origin" onclick="responeOfOrign()" style="background-color: rgba(183, 70, 228, 0.945);">
+                原始数据
+                <label id="originLabel">总共有7组数据</label>
+            </b>：最大起重量<b>F=55KN</b>、最大升起高度<b>H=220mm</b>。
+        </div>
+        
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part1.螺杆的设计与计算</h2>
+            <div class="part-content">
+                <div>
+                    <h3>1.螺纹的牙型</h3>
+                    <p>选用矩形螺纹，采用内径对中，配合选<span>H8/h8</span>，在计算强度时不考虑螺纹的径向间隙。</p>
+                </div>
+                <div>
+                    <h3>2.螺杆的材料</h3>
+                    <p>选用<span>45钢</span></p>
+                </div>
+                <div>
+                    <h3>3.螺杆的直径</h3>
+                    <p>螺杆工作时，同时受压力和转矩的作用，因此它的计算可近似按紧螺栓连接的计算公式求出螺纹内径，即
+                        <var>$$d_1 \geq \sqrt{{4 \times 1.3F} \over {\pi[\sigma]}}$$</var>
+                        其中：
+                        <label for="xuyong">螺杆许用应力</label>
+                        <var>$[\sigma] = {\sigma_S \over S}$</var><br>
+                        查阅资料:
+                        <label for="45iron">45号钢屈服极限</label>
+                        <var>$[\sigma_S] = 353MPa$</var><br>
+                        取安全系数
+                        <var>$S = 3$</var><br>
+                        于是：
+                        <var>$[\sigma] = {\sigma_S \over S} = $ <span>$118MPa$</span></var><br>
+                        螺纹内径满足:
+                        <var>$d_1 \geq \sqrt{{4 \times 1.3F} \over {\pi[\sigma]}} = $ <span>$27.78mm$</span></var><br>
+                        螺距：
+                        <var>$P = {d_1 \over 4} = $ <span>$6.94mm$</span></var><br>
+                        参考<b>矩形螺纹标准</b> ，取 <span>$P = 6mm$</span><br>
+                        进而确定螺纹的工作高度：
+                        <var>$h = {P \over 2} = $ <span>$3mm$</span></var><br>
+                        螺纹大径：
+                        <var>$d = d_1 + P = $ <span>$33.78mm$</span></var><br>
+                        圆整后取：
+                        <span id="yuanzheng">$d = 34mm$</span><br>
+                        因此，
+                        <var>$d_1 = d - P =$ <span>$28mm$</span></var><br>
+                    </p>
+                </div>
+                <div>
+                    <h3>4.自锁验算</h3>
+                    <p>
+                        当量摩擦角
+                        <var>$\rho^\prime = \arctan{\mu \over \cos{\alpha \over 2}}$</var><br>
+                        由于螺杆和螺母的材料分别取<b>45钢</b>和<b>锡青铜</b>，因此取
+                        <span>$\mu = 0.10 (0.08 \sim 0.10)$</span><br>
+                        又因为矩形螺纹牙顶角
+                        <var>$\alpha = 0^\circ$</var]><br>
+                        所以，
+                        <var>$\rho^\prime = $ <span>$5.711^\circ$</span></var><br>
+                        螺纹中径：
+                        <var>$d_2 = {{d_1 + d} \over 2 } = $ <span>$31mm$</span></var><br>
+                        螺纹中径升角：
+                        <var>$\psi = \arctan {np \over {\pi d_2}} = $ <span>$3.525^\circ$</span></var><br>
+                        满足
+                        <var>$\psi \leq \rho^\prime - 1^\circ$</var><br>
+                        因此，满足自锁条件，自锁可靠。
+                    </p>
+                </div>
+                <div>
+                    <h3>5.螺杆结构</h3>
+                    <p>
+                        螺杆上端用于支撑托杯和在其中插装手柄，因此需加大直径，其结构见图1。
+                        手柄孔径<var>$d_k$</var>根据手柄直径<var>$d_p$</var>决定，
+                        <var>$d_k \approx d_p + 0.5$</var>（后面给出）。<br>
+                        为了便于切制螺纹，螺纹上端切有退刀槽，退刀槽的直径比<var>$d_1$</var>小<var>$0.5mm$</var>，
+                        宽度为<var>$1.5P=1.5 \times 6=9mm$</var>。<br>
+                        所以退刀槽尺寸为：
+                        <var>$9 \times \phi 27.5$</var><br>
+                        螺杆下端切有倒角，以便于螺杆旋入螺母，倒角尺寸为<var>$C2$</var>。为了防止工作时螺杆从螺母中脱出，在螺杆下端安置了钢制挡圈，挡圈用螺钉固定在螺杆端部。<br>
+                        挡圈直径为: 
+                        <var>$d_0 = d + 5 =$ <span>39mm</span></var><br>
+                        挡圈厚度<var>$(6 \sim 12mm)$ <span>取8mm</span></var><br>
+                        螺钉直径为
+                        <var>$0.25d = $ <span>8.5mm</span></var><br>
+                        选取<var>$GB/T68-2000 M10\times45$</var>开槽沉头螺钉。
+                    </p>
+                </div>
+                <div>
+                    <h3>6.强度校核</h3>
+                    <p>
+                        螺杆工作时承受轴向压力<var>$F$</var>和转矩<var>$T$</var>的联合作用，根据第四强度理论求出其危险截面的当量应力,令其满足
+                        <var>$$\sigma_v = \sqrt{\sigma^2 + 3\tau^2} = \sqrt{({4F \over \pi d_1^3})^2 + 3({T \over 0.2d_1^3 })^2} \leq [\sigma]$$</var><br>
+                        其中，<var>$T = F \cdot {d_2 \over 2} \tan({\psi + \rho^\prime}) = $ <span>$113.42(N \cdot m)$</span></var><br>
+                        所以，<var>$\sigma_v = \sqrt{({4F \over \pi d_1^3})^2 + 3({T \over 0.2d_1^3 })^2} = $ <span>$99.90(MPa) \leq [\sigma] = 118MPa$</span></var><br>
+                        因此，强度符合强度要求。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part2.螺母的设计与计算</h2>
+            <div class="part-content">
+                <div>
+                    <h3>1.材料</h3>
+                    <p>
+                        选用锡青铜材质，牌号：ZCuSn10Pb1
+                    </p>
+                </div>
+                <div>
+                    <h3>2.螺纹圈数</h3>
+                    <p>
+                        计算公式：
+                        <var>$$Z \geq {F \over \pi d_2 h [p]}$$</var><br>
+                        其中螺纹中径<var>$d_2=29mm$</var>，螺纹牙高度<var>$h=3mm$</var>，螺纹牙表面许用压强<var>$[p]$</var>取<var>$25MPa(18 \sim 25MPa)$</var> 。代入上式，得
+                        <var>$$Z \geq {F \over \pi d_2 h [p]} = $$ <span>$7.52$</span></var> <br>
+                        因此，取<var>$Z = $ <span>$8$</span></var><br>
+                        考虑到退刀槽的影响，实际螺纹圈数:<var>$Z^\prime = Z + 1.5 = $ <span>$9.5$</span></var><br>
+                        螺母高:<var>$H^\prime = Z^\prime P = $ <span>$57mm$</span></var>
+                    </p>
+                </div>
+                <div>
+                    <h3>3.螺纹其它尺寸(见图2)</h3>
+                    <p>
+                        <img id="img2" src="" alt="" srcset="">
+                        <var>$a = {H^\prime \over 3} = $ <span>$19mm$</span></var><br>
+                        <var>$D \leq 1.6d = $ <span>$ 1.6 \times 34 = 54.4mm$ 取 $D = 55mm$</span></var><br>
+                        <var>$D_1 \leq 1.3D = $ <span>$ 1.3 \times 55 = 71.5mm$ 取 $D_1 = 72mm$</span></var><br>
+                    </p>
+                </div>
+                <div>
+                    <h3>4.螺母与底座的配合</h3>
+                    <p>
+                        螺母压入底座上的孔内，圆柱面配合采用<var>$H8/n7$</var>。
+                        螺母下端和底座孔上端均加工出倒角，倒角尺寸为<var>$C2$</var>。
+                        同时安置紧定螺钉防止螺母转动，紧定螺钉选用<var>$GB/T65$</var>的开槽圆头螺钉。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part3.螺杆稳定性计算</h2>
+            <div class="part-content">
+                <div>
+                    <p>
+                        螺杆稳定性条件为:<var>$$S_{sc} = {F_cr \over F}$$</var>
+                        式中，<var>$S_s$</var>为螺杆稳定性计算安全因数;<br>
+                        <var>$S_s$</var>为螺杆稳定性安全因数<var>$(S_s = 2.5 \sim 4)$</var>；<br>
+                        <var>$F_{cr}$</var>为螺杆的临界载荷。<br>
+                        计算螺杆的长细比<var>$\lambda$</var>:<var>$$\lambda = {\mu \cdot l \over i}$$</var>
+                        其中，长度系数：<var>$\mu = 2$</var>;
+                        螺杆最大受压长度：<var>$$l = H + {H^\prime \over 2} + 1.5d = $$ <span>$299.5mm$</span></var>;<br>
+                        螺杆危险截面惯性半径：<var>$i = {d_1 \over 4 }= $ <span>$7$</span></var><br>
+                        所以，<var>$\lambda = $ <span>$85.87$</span></var><br>
+                        对于<var>$\lambda < 85$</var>淬火钢
+                        <var>$F_{cr} = {480 \over {1+0.0002\gamma^2}} \cdot {\pi d_1^2 \over 4} = $ <span>$119.93(KN)$</span></var><br>
+                        进而可得<var>$S_{sc} = {F_{cr} \over F} = $ <span>$2.65$</span></var><br>
+                        由于<b>螺杆稳定性安全因数</b><var>$S_s = 2.5 \sim 4$</var><br>
+                        所以螺杆稳定性合格。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part4.托杯的设计与计算</h2>
+            <div class="part-content">
+                <div>
+                    <h3>1.材料</h3>
+                    <p>
+                        选用Q235碳钢，模锻制造。
+                    </p>
+                </div>
+                <div>
+                    <h3>2.杯托结构（见图3）</h3>
+                    <img id="img3" src="" alt="" srcset="">
+                    <p>
+                        取壁厚<var>$\delta = 10mm$</var><br>
+                        托杯高<var>$（1.5 \sim 1.8d）$</var>,<br>
+                        所以杯托高 <var>$= 1.6d = $ <span>$51.2mm$ 取 $52mm$</span></var><br>
+                        直径<var>$D_2 = 0.6d = $ <span>$20.4mm$ 取 $D_2 = 21mm$</span></var><br>
+                        <var>$D_3 = 2.4d = $ <span>$81.6mm$ 取 $D_3 = 82 mm$</span></var><br>
+                        为了使其与重物接触良好，防止重物滑动，在托杯上表面制出切口和沟纹。
+                        为了防止托杯从螺杆端部脱落，在螺杆上端应装置挡板，挡板尺寸<var>$\phi 30 \times \phi 6 \times 3$</var>，
+                        螺钉选用<var>$GB/T5783-2000M5 \times 25$</var>开槽圆角头螺钉。
+                        直径<var>$D_2$</var>的配合为<var>$H11/a11$</var>。<br>
+                        当螺杆转动时，托杯和重物都不转动。
+                        因此，在起重时，托杯底部与螺杆的接触面间有相对滑动。
+                        为了避免过快磨损，一方面需要润滑，另一方面要限制接触面间的压力，取其许用压力为
+                        <var>$$[p] = 20MPa(15 \sim 25MPa)$$</var>
+                        由此可确定托杯直径<var>$D_4 \leq \sqrt{{4F \over (\pi [P] )}+D_2^2} = $ <span>$62.79mm$ 取 $D_4 = 63mm$</span></var>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part5.手柄的设计与计算</h2>
+            <div class="part-content">
+                <div>
+                    <h3>1.材料</h3>
+                    <p><var>$Q235$</var>碳钢</p>
+                </div>
+                <div>
+                    <h3>2.手柄长度<var>$L_p$</var></h3>
+                    <p>
+                        扳动手柄的转矩<var>$KL_p$</var>必须克服螺纹副的螺纹力矩<var>$M_1$</var>和螺杆与托杯间的摩擦力矩<var>$M_2$</var>，即
+                        <var>$$KL_p \geq M_1 + M_2$$</var>
+                        则<var>$L_p \geq {{M_1 + M_2} \over K}$</var><br>
+                        式中，<var>$K$</var>为施加于手柄上的臂力<var>$(150 \sim 250 N)$</var>，为满足大多数人的使用，
+                        设计中取<var>$K = 200N$</var> 。<br>
+                        <var>$$M_1 \approx F \cdot \tan({\psi + \rho^\prime}) \cdot {d_2 \over 2} = $$ <span>$138.62(N \cdot m)$</span></var>
+                        <var>$$M_2 = 0.25(D_2 + D_4) \mu F= $$ <span>$69.3(N \cdot m)$</span></var><br>
+                        式中，<var>$\mu = 0.06(0.05 \sim 0.08)$</var>。<br>
+                        所以，手柄计算长度满足<var>$L_p \geq {{M_1 + M_2} \over K} = $ <span>$1039.6mm$</span></var><br>
+                        考虑到螺杆头部尺寸及手握长度的影响，手柄实际长度为
+                        <var>$L_w = Lp + 0.5D_4 + 100 = $ <span>$1171.1mm$</span></var><br>
+                        <var>$L_w$</var>不应超过千斤顶的最小高度，所以将手柄实际长度改为<var>$352mm$</var>，另外加套筒，套筒长<var>$800mm$</var>。
+                    </p>
+                </div>
+                <div>
+                    <h3>3.手柄直径</h3>
+                    <p>
+                        计算公式：
+                        <var>$$d_p \geq \sqrt[3]{KL_p \over (0.1[\sigma]_b)}$$</var>
+                        式中，<var>$[\sigma]_b$</var>为材料的许用弯曲应力，对于<var>$Q235$</var>的手柄，
+                        <var>$$[\sigma]_b = 120MPa$$</var>
+                        所以,<var>$d_p \geq \sqrt[3]{KL_p \over (0.1[\sigma]_b)} = $ <span>$25.88mm$ 取 $d_p = 25.88mm$</span></var><br>
+                        则螺杆孔径<var>$d_k = d_p +0.5 =$ <span>$26.38mm$</span></var>
+                    </p>
+                </div>
+                <div>
+                    <h3>4.手柄结构</h3>
+                    <img id="img4" src="" alt="" srcset="">
+                    <p>
+                        手柄插入螺杆上端的孔中，为防止手柄从孔中滑出，在手柄两端应加上挡环，并用螺钉固定，其结构见图4。<br>
+                        固定螺钉选用<var>$GB/T68-2000 M8 \times 20$</var>开槽沉头螺钉。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part6.底座的设计与计算</h2>
+            <div class="part-content">
+                <div>
+                    <h3>1.材料</h3>
+                    <p>
+                        <var>$HT100$</var>铸铁。
+                    </p>
+                </div>
+                <div>
+                    <h3>2.尺寸设计</h3>
+                    <img id="img5" src="" alt="" srcset="">
+                    <p>
+                        见图5，取壁厚<var>$\delta = 10mm$</var>，锥度按照<var>$1:5$</var>设计。<br>
+                        各部分尺寸为： <br>
+                        <var>$H_1 = H + 20 = $ <span>$240mm$</span></var><br>
+                        <var>$D_5 = D + 6 = $ <span>$61mm$</span></var><br>
+                        <var>$D_6 = D_5 + {H_1 \over 5} = $ <span>$109mm$</span></var><br>
+                        <var>$D_7 = \sqrt{{4F \over \pi [\sigma]_p} + D_6^2} = $ <span>$199.73mm$</span></var><br>
+                        式中，<var>$[\sigma ]_p$</var>为底座下枕垫物的许用挤压应力。以下枕垫物为木材考虑，<var>$[\sigma ]_p = 2.5MPa$</var>。<br>
+                        因为<var>$D_8 \geq D_1$</var><br>
+                        所以，取<span>$D_8 = 72mm$</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="box, part">
+            <h2 onclick="responeOfPart(this.nextElementSibling)">Part7.千斤顶的效率</h2>
+            <div class="part-content">
+                <div>
+                    <p>
+                        计算公式：
+                        <var>$$\eta = {FP \over {2\pi (T_1 + T_2)}}$$ </var>
+                        一般<var>$\eta < 0.3$</var><br>
+                        本次设计中<var>$\eta = 0.253 < 0.3$</var><br>
+                        因此，设计效率符合要求。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="./src/mian.js"></script>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+    </script>
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+
+</body>
+</html>
