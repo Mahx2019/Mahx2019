@@ -61,7 +61,7 @@ span:hover{
     flex-direction:row;
 }
 .part-content{
-    display: none;
+    display: block;
 }
 .h2btn{
     padding: 0px;
@@ -76,6 +76,9 @@ span:hover{
     font-weight: bold;
     background-color:rgb(97, 190, 9);
     align-self:center;
+}
+var > span{
+    font-style: normal;
 }
 #root{
     position: relative;
