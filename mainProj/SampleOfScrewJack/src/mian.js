@@ -17,14 +17,19 @@ let responeOfOrign = () => {
 //     }
 // }
 
-let mainFunc = ()=>{
+let mainFunc = (F,H)=>{
     let valueMap = new Map();
 
     //固定值
     // F = parseInt(document.getElementById('F').innerText.match(/\=(.*?)\K/)[1])
     // H = parseInt(document.getElementById('H').innerText.match(/\=(.*?)\m/)[1])
-    F = 45
-    H = 190
+    //测试值
+    // F = 20
+    // H = 190
+    // document.getElementById('F').innerText = F
+    // document.getElementById('H').innerText = H
+    valueMap.set('F', F)
+    valueMap.set('H', H)
     //固定值
     let mu = 0.1,
         alpha = 0,
@@ -273,12 +278,11 @@ let mainFunc = ()=>{
 }
 
 
-let view_ = (valueMap = mainFunc()) =>{
-
+let view_ = (F,H) =>{
     // document.getElementById(key).innerText='95'
     // let valueMap1 = new Map();
     // valueMap1.set('F',99);
-
+    let valueMap = mainFunc(F,H)
     valueMap.forEach((value, key)=>{
         // console.log(value)
         if(document.getElementById(key) != null){
@@ -288,7 +292,26 @@ let view_ = (valueMap = mainFunc()) =>{
         }
     })
 }
-view_()
+
+
+window.onload = () =>{
+    let buttonClick = document.getElementsByTagName('button')[0]
+    let yanzheng =document.getElementById('yanzheng')
+    yanzheng.innerText = 'F=> 55KN H=> 220mm'
+    
+    buttonClick.onclick = () =>{
+        let inputF = document.getElementById('inputF').value
+        let inputH = document.getElementById('inputH').value
+        view_(inputF,inputH)
+        let yanzheng =document.getElementById('yanzheng')
+        yanzheng.innerText = 'F=>'+inputF+ 'KN'+' '+ 'H=>' +inputH+'mm'
+    }
+}
+
+// setInterval(() => {inputFunc()}, 10);
+
+
+
 
 let getStyle = (dom, attr) => {
     if (dom.currentStyle) {
