@@ -1,5 +1,4 @@
 * {
-    font-size:larger;
     font-family:'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
                 'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei',
                 'Microsoft JhengHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
@@ -7,10 +6,31 @@
                 'WenQuanYi Micro Hei', SimSun, sans-serif;
     padding: 0px;
     border: 0px;
+    margin: 0px;
 }
 body{
     background-color: #FBDA61;
     background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+}
+div{
+    justify-content: center;
+    align-items: center;
+}
+a:hover{
+    color: green;
+    background: #f99;
+}
+a{
+    text-decoration: none;
+    color:steelblue;
+    zoom: 1;
+}
+div > a{
+    display:inline-block
+}
+#root{
+    display: flex;
+    flex-direction: column;
 }
 
 .text-clip{
@@ -20,8 +40,6 @@ body{
     background: linear-gradient(45deg, rgba(0,173,181,1) 0%, rgba(0,173,181,.4)  100%);
     -webkit-background-clip: text;
     text-align:center; 
-    position: relative;
-    top: 20vh;
-    transform: translateY(-50%);
+    top: 30%;
 }
 
