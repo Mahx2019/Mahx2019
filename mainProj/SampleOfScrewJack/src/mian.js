@@ -303,6 +303,7 @@ window.onload = () => {
         let inputF = document.getElementById('inputF').value
         let inputH = document.getElementById('inputH').value
         view_(parseInt(inputF), parseInt(inputH))
+        // view_(inputF, inputH)
         let yanzheng = document.getElementById('yanzheng')
         yanzheng.innerText = 'F=>' + inputF + 'KN' + ' ' + 'H=>' + inputH + 'mm'
     }
